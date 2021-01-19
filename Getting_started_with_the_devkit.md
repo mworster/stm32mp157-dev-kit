@@ -10,7 +10,13 @@ Most of this information comes, indirectly, from [1]
     “Unknown” in the PC device manager. In this case,the user must install the dedicated driver 
     files, and update the driver of the connected device from the devicemanager.
 
-The driver refered to by the above paragraph can be found at [2] the "STSW-LINK009". Once downloaded, this can be
+    The ST-LINK/V2-1 embeds a firmware upgrade mechanism for in-situ upgrade through the USB port. 
+    As firmwaremay evolve during the lifetime of the ST-LINK/V2-1 product (addition of new 
+    functionalities, bug fixes, or supportof new microprocessor families), it is recommended to visit
+    periodically the www.st.com website before starting touse the STM32MP157A-DK1 or STM32MP157C-DK2
+    Discovery kit to stay up-to-date with the latest firmwareversion.
+
+The driver refered to by the above paragraphs can be found at [2] the "STSW-LINK009". Once downloaded, this can be
 installed via the `stlink_winusb_install.bat` in administrator mode.
 
 ## Initial Booting
