@@ -41,6 +41,37 @@ works perfectly.
   2. Check device manager for the STLink COM port number: `STMicroelectronics STLink Virtual COM Port (COM6)`
   3. Open TeraTerm to COMX(X=6 for me) and set to a `115200` baud rate
 
+### Initial Output
+
+Once the boot is successful and TeraTerm is connected and gathering data as it should, you'll see something
+along the lines of the below (truncated) output:
+
+    NOTICE:  CPU: STM32MP157AAC Rev.B
+    NOTICE:  Model: STMicroelectronics STM32MP157C-DK2 Discovery Board
+    NOTICE:  Board: MB1272 Var1 Rev.C-01
+    INFO:    Reset reason (0x14):
+    INFO:      Pad Reset from NRST
+    ...
+    INFO:    SP_MIN: Initializing runtime services
+    INFO:    SP_MIN: Preparing exit to normal world
+
+    U-Boot 2018.11-stm32mp-r4 (Jun 25 2020 - 12:01:15 +0000)
+
+    CPU: STM32MP157AAC Rev.B
+    Model: STMicroelectronics STM32MP157C-DK2 Discovery Board
+    ...
+    XIP Kernel Image ... OK
+    Using Device Tree in place at c4000000, end c4014f69
+
+    Starting kernel ...
+
+    [    0.000000] Booting Linux on physical CPU 0x0
+    [    0.000000] Linux version 4.19.94 (oe-user@oe-host) (gcc version 8.2.0 (GCC)) #1 SMP PREEMPT Thu Jun 25 11:54:35 UTC 2020
+    [    0.000000] CPU: ARMv7 Processor [410fc075] revision 5 (ARMv7), cr=10c5387d    
+    ...
+
+This shows everything is booting successfully and you have a 2018.11 u-boot with a 4.19.94 kernel.
+
 ## Resources
 
 1. https://www.st.com/resource/en/user_manual/dm00591354-discovery-kits-with-stm32mp157-mpus-stmicroelectronics.pdf
