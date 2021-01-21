@@ -78,9 +78,19 @@ along the lines of the below (truncated) output:
 
 This shows everything is booting successfully and you have a 2018.11 u-boot with a 4.19.94 kernel.
 
+## Flashing New Images
+
+### Default Images
+
+ST has various ["Packages"](https://wiki.st.com/stm32mpu/wiki/Which_STM32MPU_Embedded_Software_Package_better_suits_your_needs). In a nutshell:
+  * Starter - This is prebuilt binaries 
+  * Developer - 
+  * Distribution.  
+
 ## Resources
 
 1. https://www.st.com/resource/en/user_manual/dm00591354-discovery-kits-with-stm32mp157-mpus-stmicroelectronics.pdf
 2. https://my.st.com/content/my_st_com/en/products/development-tools/software-development-tools/stm32-software-development-tools/stm32-utilities/stsw-link009.license=1610949972923.product=STSW-LINK009.version=2.0.1.html
 3. https://wiki.st.com/stm32mpu/wiki/STM32MP15_Discovery_kits_-_Starter_Package
 4. https://wiki.st.com/stm32mpu/wiki/How_to_get_Terminal
+5. https://wiki.st.com/stm32mpu/wiki/STM32MP15_Discovery_kits_-_Starter_Package#Downloading_the_image_and_flashing_it_on_the_board
