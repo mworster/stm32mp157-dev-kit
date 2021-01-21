@@ -84,8 +84,9 @@ This shows everything is booting successfully and you have a 2018.11 u-boot with
 
 ST has various ["Packages"](https://wiki.st.com/stm32mpu/wiki/Which_STM32MPU_Embedded_Software_Package_better_suits_your_needs). In a nutshell:
   * Starter - This is prebuilt binaries 
-  * Developer - 
-  * Distribution.  
+  * Developer - Gives the ability to build a STLinux based Kernel, Opp-Tee applications and u-boot binary
+  * Distribution - Yocto based build, full RFS as well as low level embedded portions
+  
 
 ## Resources
 
