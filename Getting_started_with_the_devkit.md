@@ -121,7 +121,7 @@ Let's flash the downloaded image on the microSD card:
     Connect the delivered power supply to the USB Type-C™ port (4)
     Press the reset button (5) to reset the board
     
-
+![](https://github.com/mworster/stm32mp157-dev-kit/blob/master/STM32MP157x-DKx_flashing_configuration.png)
 
 ## Resources
 
