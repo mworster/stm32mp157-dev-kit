@@ -98,12 +98,30 @@ pregenerated images[6] that ST has to offer. Once the starter images tarball are
           ├── arm-trusted-firmware //binaries for FSBL partitions and serial boot mode
           |   ├── *.optee.stm32      // optee boot chain
           |   ├── *.serialboot.stm32 // STM32CubeProgrammer
-          |   └── *.trusted.stm32    // trusted boot chain
+          |   └── *.trusted.stm32    // trusted boot chain (default)
           ├── bootloader  // U-Boot binaries for FSBL, SSBL partitions and supported boot chains
           ├── flashlayout_st-image-weston // Flash layout files (text description of the partitions) for the supported boot chains on supported boot devices and boards
           ├── optee // Optee binaries for TEE partitions required for optee boot chains
           ├── scripts // helper scripts
           └── other files...  // binaries for other partitions on eMMC, microSD card, and NAND devices
+
+### Install Programming Tool
+
+The STM32CubeProgrammer tool is used to flash the STM32MP157x-DKx Discovery kit, the µSD card is default flash device, and the trusted boot chain is the default solution for booting.
+The tools[7] can be downloaded from the link [here.](https://www.st.com/en/development-tools/stm32cubeprog.html). Once the package has been downloded, it can be extracted
+and (on windows) `SetupSTM32CubeProgrammer-2.5.0.exe` can be run to install the tools. Follow the wizard to install the tools on your PC in the default paths. 
+
+### Setup the board for flashing
+
+Let's flash the downloaded image on the microSD card:
+
+    Set the boot switches (1) to the off position
+    Connect the USB Type-C™ (OTG) port (2) to the host PC that contains the downloaded image
+    Insert the delivered microSD card into the dedicated slot (3)
+    Connect the delivered power supply to the USB Type-C™ port (4)
+    Press the reset button (5) to reset the board
+    
+
 
 ## Resources
 
@@ -113,3 +131,4 @@ pregenerated images[6] that ST has to offer. Once the starter images tarball are
 4. https://wiki.st.com/stm32mpu/wiki/How_to_get_Terminal
 5. https://wiki.st.com/stm32mpu/wiki/STM32MP15_Discovery_kits_-_Starter_Package#Downloading_the_image_and_flashing_it_on_the_board
 6. https://st.com/content/ccc/resource/technical/software/firmware/group0/e2/88/93/37/bc/48/41/cb/STM32MP15_OpenSTLinux_Starter_Package/files/FLASH-stm32mp1-openstlinux-5-4-dunfell-mp1-20-11-12.tar.xz/jcr:content/translations/en.FLASH-stm32mp1-openstlinux-5-4-dunfell-mp1-20-11-12.tar.xz
+7. https://wiki.st.com/stm32mpu/wiki/STM32MP15_Discovery_kits_-_Starter_Package#Installing_the_tools
