@@ -90,7 +90,20 @@ ST has various ["Packages"](https://wiki.st.com/stm32mpu/wiki/Which_STM32MPU_Emb
 ### Starter Images
 
 Initially, it's important to understand flashing new images over anything else. In that spirt, we start with the Starter Package and the 
-pregenerated images[6] that ST has to offer. 
+pregenerated images[6] that ST has to offer. Once the starter images tarball are downloaded and extracted we see the following file structure:
+
+    stm32mp1-openstlinux-5-4-dunfell-mp1-20-11-12
+    └──images
+       └──stm32mp1
+          ├── arm-trusted-firmware //binaries for FSBL partitions and serial boot mode
+          |   ├── *.optee.stm32      // optee boot chain
+          |   ├── *.serialboot.stm32 // STM32CubeProgrammer
+          |   └── *.trusted.stm32    // trusted boot chain
+          ├── bootloader  // U-Boot binaries for FSBL, SSBL partitions and supported boot chains
+          ├── flashlayout_st-image-weston // Flash layout files (text description of the partitions) for the supported boot chains on supported boot devices and boards
+          ├── optee // Optee binaries for TEE partitions required for optee boot chains
+          ├── scripts // helper scripts
+          └── other files...  // binaries for other partitions on eMMC, microSD card, and NAND devices
 
 ## Resources
 
