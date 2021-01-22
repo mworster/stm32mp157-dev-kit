@@ -123,6 +123,48 @@ Let's flash the downloaded image on the microSD card:
     
 ![](https://github.com/mworster/stm32mp157-dev-kit/blob/master/STM32MP157x-DKx_flashing_configuration.png)
 
+### Flashing Commands
+
+Now we have the board setup for flashing, the tools for flashing, and the images to be flashed. The next step is to run the commands. 
+When we installed the tools, this included a set of CLIs which we'll be using for this work. On my machine the default path was:
+`C:\Program Files\STMicroelectronics\STM32Cube\STM32CubeProgrammer` and in the associated `bin` directory we can find the various exe's which will be used here.
+
+    cd "C:\Program Files\STMicroelectronics\STM32Cube\STM32CubeProgrammer\bin"
+    C:\Program Files\STMicroelectronics\STM32Cube\STM32CubeProgrammer\bin> .\STM32_Programmer_CLI.exe -l usb
+      -------------------------------------------------------------------
+                       STM32CubeProgrammer v2.5.0
+      -------------------------------------------------------------------
+
+      =====  DFU Interface   =====
+
+      Total number of available STM32 device in DFU mode: 1
+
+        Device Index           : USB1
+        USB Bus Number         : 002
+        USB Address Number     : 002
+        Product ID             : DFU in HS Mode @Device ID /0x500, @Revision ID /0x0000
+        Serial number          : 001C002E3438511538333630
+        Firmware version       : 0x0110
+        Device ID              : 0x0500
+
+This first command verifes we're connected and read to flash. This also notes we're using the "USB1" device. This gets fed into the actuall flashing command:
+
+    C:\Program Files\STMicroelectronics\STM32Cube\STM32CubeProgrammer\bin> .\STM32_Programmer_CLI.exe -c port=usb1 -w FlashLayout_sdcard_stm32mp157a-dk1-trusted.tsv
+    
+The file pointed to by the `w` flag, is a text based file (tsv) that defines the partitions we're going to create and the location of the binaries to populate each one:
+
+    #Opt	Id	Name	Type	IP	Offset	Binary
+    -	0x01	fsbl1-boot	Binary	none	0x0	arm-trusted-firmware/tf-a-stm32mp157a-dk1-serialboot.stm32
+    -	0x03	ssbl-boot	Binary	none	0x0	bootloader/u-boot-stm32mp157a-dk1-trusted.stm32
+    P	0x04	fsbl1	Binary	mmc0	0x00004400	arm-trusted-firmware/tf-a-stm32mp157a-dk1-trusted.stm32
+    P	0x05	fsbl2	Binary	mmc0	0x00044400	arm-trusted-firmware/tf-a-stm32mp157a-dk1-trusted.stm32
+    PD	0x06	ssbl	Binary	mmc0	0x00084400	bootloader/u-boot-stm32mp157a-dk1-trusted.stm32
+    P	0x21	boot	System	mmc0	0x00284400	st-image-bootfs-openstlinux-weston-stm32mp1.ext4
+    P	0x22	vendorfs	FileSystem	mmc0	0x04284400	st-image-vendorfs-openstlinux-weston-stm32mp1.ext4
+    P	0x23	rootfs	FileSystem	mmc0	0x05284400	st-image-weston-openstlinux-weston-stm32mp1.ext4
+    P	0x24	userfs	FileSystem	mmc0	0x33C84400	st-image-userfs-openstlinux-weston-stm32mp1.ext4
+
+
 ## Resources
 
 1. https://www.st.com/resource/en/user_manual/dm00591354-discovery-kits-with-stm32mp157-mpus-stmicroelectronics.pdf
