@@ -86,7 +86,11 @@ ST has various ["Packages"](https://wiki.st.com/stm32mpu/wiki/Which_STM32MPU_Emb
   * Starter - This is prebuilt binaries 
   * Developer - Gives the ability to build a STLinux based Kernel, Opp-Tee applications and u-boot binary
   * Distribution - Yocto based build, full RFS as well as low level embedded portions
-  
+
+### Starter Images
+
+Initially, it's important to understand flashing new images over anything else. In that spirt, we start with the Starter Package and the 
+pregenerated images[6] that ST has to offer. 
 
 ## Resources
 
@@ -95,3 +99,4 @@ ST has various ["Packages"](https://wiki.st.com/stm32mpu/wiki/Which_STM32MPU_Emb
 3. https://wiki.st.com/stm32mpu/wiki/STM32MP15_Discovery_kits_-_Starter_Package
 4. https://wiki.st.com/stm32mpu/wiki/How_to_get_Terminal
 5. https://wiki.st.com/stm32mpu/wiki/STM32MP15_Discovery_kits_-_Starter_Package#Downloading_the_image_and_flashing_it_on_the_board
+6. https://st.com/content/ccc/resource/technical/software/firmware/group0/e2/88/93/37/bc/48/41/cb/STM32MP15_OpenSTLinux_Starter_Package/files/FLASH-stm32mp1-openstlinux-5-4-dunfell-mp1-20-11-12.tar.xz/jcr:content/translations/en.FLASH-stm32mp1-openstlinux-5-4-dunfell-mp1-20-11-12.tar.xz
