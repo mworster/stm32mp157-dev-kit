@@ -164,6 +164,21 @@ The file pointed to by the `w` flag, is a text based file (tsv) that defines the
     P	0x23	rootfs	FileSystem	mmc0	0x05284400	st-image-weston-openstlinux-weston-stm32mp1.ext4
     P	0x24	userfs	FileSystem	mmc0	0x33C84400	st-image-userfs-openstlinux-weston-stm32mp1.ext4
 
+## Building Our Own Files
+
+To build our own files, we'll select the Developer Package. This package allows developments on top of the STM32MPU Embedded Software distribution, 
+or, in our case, to replace the Starter Package pre-built binaries. The Developer Package is generated from the Distribution Package.
+
+### Prereq
+
+Before flashing anything created on our own, you must flash the Starter Package binaries. This enforces that all partitions are populated, verifies the
+flashing procedure, and the boards functionality. 
+It should also be noted that the dev contents and Starter binaries will be from the same source if downloaded at the same time, this helps ensure 
+continuity in test.
+
+### SDK
+
+The STM32MP1 SDK is delivered through a tarball file named : en.SDK-x86_64-stm32mp1-openstlinux-5-4-dunfell-mp1-20-11-12.tar.xz
 
 ## Resources
 
