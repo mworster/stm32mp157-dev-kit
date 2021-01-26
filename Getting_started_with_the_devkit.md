@@ -178,7 +178,8 @@ continuity in test.
 
 ### SDK
 
-The STM32MP1 SDK is delivered through a tarball file named : en.SDK-x86_64-stm32mp1-openstlinux-5-4-dunfell-mp1-20-11-12.tar.xz
+The STM32MP1 SDK is delivered through a tarball file named : [en.SDK-x86_64-stm32mp1-openstlinux-5-4-dunfell-mp1-20-11-12.tar.xz](http://st.com/content/ccc/resource/technical/software/sw_development_suite/group0/10/c7/78/3d/89/d1/43/c9/stm32mp1dev_yocto_sdk/files/SDK-x86_64-stm32mp1-openstlinux-5-4-dunfell-mp1-20-11-12.tar.xz/jcr:content/translations/en.SDK-x86_64-stm32mp1-openstlinux-5-4-dunfell-mp1-20-11-12.tar.xz)
+
 
 ## Resources
 
