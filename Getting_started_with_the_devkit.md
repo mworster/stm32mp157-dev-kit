@@ -166,8 +166,10 @@ The file pointed to by the `w` flag, is a text based file (tsv) that defines the
 
 ## Building Our Own Files
 
-To build our own files, we'll select the Developer Package. This package allows developments on top of the STM32MPU Embedded Software distribution, 
+To build our own files, we'll select the Developer Package[8]. This package allows developments on top of the STM32MPU Embedded Software distribution, 
 or, in our case, to replace the Starter Package pre-built binaries. The Developer Package is generated from the Distribution Package.
+
+We'll assume for this section that building is done on a Linux machine and all directions in this section will be for Linux (Debian) unless otherwise noted.
 
 ### Prereq
 
@@ -180,6 +182,26 @@ continuity in test.
 
 The STM32MP1 SDK is delivered through a tarball file named : [en.SDK-x86_64-stm32mp1-openstlinux-5-4-dunfell-mp1-20-11-12.tar.xz](http://st.com/content/ccc/resource/technical/software/sw_development_suite/group0/10/c7/78/3d/89/d1/43/c9/stm32mp1dev_yocto_sdk/files/SDK-x86_64-stm32mp1-openstlinux-5-4-dunfell-mp1-20-11-12.tar.xz/jcr:content/translations/en.SDK-x86_64-stm32mp1-openstlinux-5-4-dunfell-mp1-20-11-12.tar.xz)
 
+Once downloaded, you'll need to uncompress the tarball file to get the SDK installation script, and possibly update the permissions:
+
+    $ tar xvf en.SDK-x86_64-stm32mp1-openstlinux-5-4-dunfell-mp1-20-11-12.tar.xz
+    $ chmod +x stm32mp1-openstlinux-5.4-dunfell-mp1-20-11-12/sdk/st-image-weston-openstlinux-weston-stm32mp1-x86_64-toolchain-3.1-openstlinux-5.4-dunfell-mp1-20-11-12.sh
+
+Run the SDK installation script. Use the -d <SDK installation directory absolute path> option to specify the absolute path to the directory in which you want to install the SDK (<SDK installation directory>)
+
+    $ ./stm32mp1-openstlinux-5.4-dunfell-mp1-20-11-12/sdk/st-image-weston-openstlinux-weston-stm32mp1-x86_64-toolchain-3.1-openstlinux-5.4-dunfell-mp1-20-11-12.sh -d <working directory absolute path>/Developer-Package/SDK
+
+A successful installation outputs the following log:
+
+    ST OpenSTLinux - Weston - (A Yocto Project Based Distro) SDK installer version 3.1-openstlinux-5-4-dunfell-mp1-20-11-12
+    ===========================================================================================
+    You are about to install the SDK to "<working directory absolute path>/Developer-Package/SDK". Proceed [Y/n]? 
+    Extracting     SDK................................................................................................................................................................................................................done
+    Setting it up...done
+    SDK has been successfully set up and is ready to be used.
+    Each time you wish to use the SDK in a new shell session, you need to source the environment setup script e.g.
+     $ . <working directory absolute path>/Developer-Package/SDK/environment-setup-cortexa7t2hf-neon-vfpv4-ostl-linux-gnueabi
+ 
 
 ## Resources
 
@@ -190,3 +212,4 @@ The STM32MP1 SDK is delivered through a tarball file named : [en.SDK-x86_64-stm3
 5. https://wiki.st.com/stm32mpu/wiki/STM32MP15_Discovery_kits_-_Starter_Package#Downloading_the_image_and_flashing_it_on_the_board
 6. https://st.com/content/ccc/resource/technical/software/firmware/group0/e2/88/93/37/bc/48/41/cb/STM32MP15_OpenSTLinux_Starter_Package/files/FLASH-stm32mp1-openstlinux-5-4-dunfell-mp1-20-11-12.tar.xz/jcr:content/translations/en.FLASH-stm32mp1-openstlinux-5-4-dunfell-mp1-20-11-12.tar.xz
 7. https://wiki.st.com/stm32mpu/wiki/STM32MP15_Discovery_kits_-_Starter_Package#Installing_the_tools
+8. https://wiki.st.com/stm32mpu/wiki/STM32MP1_Developer_Package
