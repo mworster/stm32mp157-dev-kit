@@ -202,6 +202,15 @@ A successful installation outputs the following log:
     Each time you wish to use the SDK in a new shell session, you need to source the environment setup script e.g.
      $ . <working directory absolute path>/Developer-Package/SDK/environment-setup-cortexa7t2hf-neon-vfpv4-ostl-linux-gnueabi
  
+ After this initial installulation, you'll need to run a single command each time you're in a new window starting to work on cross-compiling the code:
+
+    $ source <SDK installation directory>/environment-setup-cortexa7t2hf-neon-vfpv4-ostl-linux-gnueabi
+
+And the following check allows you to ensure that the environment is correctly setup:
+
+    $ echo $ARCH
+    arm
+
 
 ## Resources
 
