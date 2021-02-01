@@ -267,6 +267,33 @@ or, via a `for` loop:
 The order in which fragments are applied is determined by the number of the fragment filename (fragment-001, fragment-002, e.g.).
 Please pay special attention to the naming of your optional fragments to ensure you select the right features.
 
+#### Build the Kernel
+
+You MUST compile from the directory on which the configuration has been done (i.e. the directory which contains the '.config' file).
+
+It's preconized to use the method with dedicated build directory for a better managment of changes made on source code (as all build artifacts will be located
+inside the dedicated build directory). However since we're just "going fast" the following notes are for building within the source dirctory.
+
+Compile and install on the current source code directory:
+
+    $ cd <directory to kernel source code>
+        
+Build kernel images (uImage and vmlinux) and device tree (dtbs)
+
+    $ make ARCH=arm uImage vmlinux dtbs LOADADDR=0xC2000040
+
+Build kernel module
+
+    $ make ARCH=arm modules
+    
+Generate output build artifacts
+
+    $ make ARCH=arm INSTALL_MOD_PATH="$PWD/install_artifact" modules_install
+    $ mkdir -p $PWD/install_artifact/boot/
+    $ cp $PWD/arch/arm/boot/uImage $PWD/install_artifact/boot/
+    $ cp $PWD/arch/arm/boot/dts/st*.dtb $PWD/install_artifact/boot/
+
+
 ## Resources
 
 1. https://www.st.com/resource/en/user_manual/dm00591354-discovery-kits-with-stm32mp157-mpus-stmicroelectronics.pdf
