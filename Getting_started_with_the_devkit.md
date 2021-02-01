@@ -293,6 +293,12 @@ Generate output build artifacts
     $ cp $PWD/arch/arm/boot/uImage $PWD/install_artifact/boot/
     $ cp $PWD/arch/arm/boot/dts/st*.dtb $PWD/install_artifact/boot/
 
+#### Kernel Artifacts
+
+Generated files are :
+
+    #> $PWD/install_artifact/boot/uImage
+    #> $PWD/install_artifact/boot/<stm32-boards>.dtb
 
 ## Resources
 
