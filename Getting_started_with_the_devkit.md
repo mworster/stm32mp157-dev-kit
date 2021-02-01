@@ -211,6 +211,25 @@ And the following check allows you to ensure that the environment is correctly s
     $ echo $ARCH
     arm
 
+### Linux Kernel
+
+For building the Linux kernel we'll follow the steps from the developer package[9]. This initially starts by downloading the OpenSTLinux version of the
+Linux kernel. The latest package can be found via the link on ST's site, but to grab the (current) most recent we can use the following commands:
+
+    $ wget https://st.com/content/ccc/resource/technical/sw-updater/firmware2/group0/c4/f4/cd/e7/dc/4f/44/c4/STM32cube_Standard_A7_BSP_components_kernel/files/SOURCES-kernel-stm32mp1-openstlinux-5-4-dunfell-mp1-20-11-12.tar.xz/jcr:content/translations/en.SOURCES-kernel-stm32mp1-openstlinux-5-4-dunfell-mp1-20-11-12.tar.xz
+    $ tar -xvf en.SOURCES-kernel-stm32mp1-openstlinux-5-4-dunfell-mp1-20-11-12.tar.xz
+    $ cd stm32mp1-openstlinux-5-4-dunfell-mp1-20-11-12/sources/arm-ostl-linux-gnueabi
+    $ tar -xvf linux-5.4.56.tar.xz
+
+This set of commands will download the Linux source code for the 5.4 kernel along with a series of patch files and a README file on how to use everything. 
+The next step is to patch the source code to build:
+
+    $ cd linux-5.4.56
+    $ for p in `ls -1 ../*.patch`; do patch -p1 < $p; done
+    
+These commands will move you into the core Linux source code and patch all ST provided files (listed in the partent directory) to prep the files. We'll be building
+    * the bootfs partition that contains the Linux kernel U-Boot image (uImage) and device tree
+    * the rootfs partition that contains the Linux kernel modules
 
 ## Resources
 
@@ -222,3 +241,4 @@ And the following check allows you to ensure that the environment is correctly s
 6. https://st.com/content/ccc/resource/technical/software/firmware/group0/e2/88/93/37/bc/48/41/cb/STM32MP15_OpenSTLinux_Starter_Package/files/FLASH-stm32mp1-openstlinux-5-4-dunfell-mp1-20-11-12.tar.xz/jcr:content/translations/en.FLASH-stm32mp1-openstlinux-5-4-dunfell-mp1-20-11-12.tar.xz
 7. https://wiki.st.com/stm32mpu/wiki/STM32MP15_Discovery_kits_-_Starter_Package#Installing_the_tools
 8. https://wiki.st.com/stm32mpu/wiki/STM32MP1_Developer_Package
+9. https://wiki.st.com/stm32mpu/wiki/STM32MP1_Developer_Package#Installing_the_Linux_kernel
