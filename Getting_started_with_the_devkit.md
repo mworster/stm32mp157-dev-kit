@@ -246,7 +246,7 @@ The next step is to patch the source code to build:
 
     $> cd linux-5.4.56
     $> for p in `ls -1 ../*.patch`; do patch -p1 < $p; done
-    
+
 These commands will move you into the core Linux source code and patch all ST provided files (listed in the partent directory) to prep the files. We'll be building
 
 #### Configuring the Kernel
@@ -258,14 +258,14 @@ and run `make`:
     $> cd <directory to kernel source code>
     $> make ARCH=arm multi_v7_defconfig fragment*.config
 
-If there are multiple fragments, apply them manually one by one:
+If there are multiple fragments, apply them manually one by one (We will not be using this):
 
     $> scripts/kconfig/merge_config.sh -m -r .config ../fragment-01-xxxx.config
     $> scripts/kconfig/merge_config.sh -m -r .config ../fragment-02-xxxx.config
     ...
     $> yes '' | make oldconfig
 
-or, via a `for` loop:
+or, via a `for` loop (Run this version for our demo code):
 
     $> for f in `ls -1 ../fragment*.config`; do scripts/kconfig/merge_config.sh -m -r .config $f; done
     $> yes '' | make ARCH=arm oldconfig
