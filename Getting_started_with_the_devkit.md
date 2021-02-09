@@ -171,7 +171,18 @@ or, in our case, to replace the Starter Package pre-built binaries. The Develope
 
 We'll assume for this section that building is done on a Linux machine and all directions in this section will be for Linux (Debian) unless otherwise noted.
 
-### Prereq
+### Host Machine Prep
+
+Prior to building anything on our host machine, we need to ensure the correct prerequisits are installed. 
+Assuming a Diabian based OS, the following set of commands will install all required packages:
+
+    $> sudo apt-get update
+    $> sudo apt-get install gawk wget git-core diffstat unzip texinfo gcc-multilib build-essential chrpath socat cpio python3 python3-pip python3-pexpect xz-utils debianutils iputils-ping python3-git python3-jinja2 libegl1-mesa libsdl1.2-dev pylint3 pylint xterm
+    $> sudo apt-get install make xsltproc docbook-utils fop dblatex xmlto
+    $> sudo apt-get install libncurses5 libncurses5-dev libncursesw5-dev libssl-dev linux-headers-generic u-boot-tools device-tree-compiler bison flex g++ libyaml-dev
+
+
+### Prereqs on Target
 
 Before flashing anything created on our own, you must flash the Starter Package binaries. This enforces that all partitions are populated, verifies the
 flashing procedure, and the boards functionality. 
@@ -184,12 +195,12 @@ The STM32MP1 SDK is delivered through a tarball file named : [en.SDK-x86_64-stm3
 
 Once downloaded, you'll need to uncompress the tarball file to get the SDK installation script, and possibly update the permissions:
 
-    $ tar xvf en.SDK-x86_64-stm32mp1-openstlinux-5-4-dunfell-mp1-20-11-12.tar.xz
-    $ chmod +x stm32mp1-openstlinux-5.4-dunfell-mp1-20-11-12/sdk/st-image-weston-openstlinux-weston-stm32mp1-x86_64-toolchain-3.1-openstlinux-5.4-dunfell-mp1-20-11-12.sh
+    $> tar xvf en.SDK-x86_64-stm32mp1-openstlinux-5-4-dunfell-mp1-20-11-12.tar.xz
+    $> chmod +x stm32mp1-openstlinux-5.4-dunfell-mp1-20-11-12/sdk/st-image-weston-openstlinux-weston-stm32mp1-x86_64-toolchain-3.1-openstlinux-5.4-dunfell-mp1-20-11-12.sh
 
 Run the SDK installation script. Use the -d <SDK installation directory absolute path> option to specify the absolute path to the directory in which you want to install the SDK (<SDK installation directory>)
 
-    $ ./stm32mp1-openstlinux-5.4-dunfell-mp1-20-11-12/sdk/st-image-weston-openstlinux-weston-stm32mp1-x86_64-toolchain-3.1-openstlinux-5.4-dunfell-mp1-20-11-12.sh -d <working directory absolute path>/Developer-Package/SDK
+    $> ./stm32mp1-openstlinux-5.4-dunfell-mp1-20-11-12/sdk/st-image-weston-openstlinux-weston-stm32mp1-x86_64-toolchain-3.1-openstlinux-5.4-dunfell-mp1-20-11-12.sh -d <working directory absolute path>/Developer-Package/SDK
 
 A successful installation outputs the following log:
 
@@ -200,15 +211,15 @@ A successful installation outputs the following log:
     Setting it up...done
     SDK has been successfully set up and is ready to be used.
     Each time you wish to use the SDK in a new shell session, you need to source the environment setup script e.g.
-     $ . <working directory absolute path>/Developer-Package/SDK/environment-setup-cortexa7t2hf-neon-vfpv4-ostl-linux-gnueabi
+     $> . <working directory absolute path>/Developer-Package/SDK/environment-setup-cortexa7t2hf-neon-vfpv4-ostl-linux-gnueabi
  
  After this initial installulation, you'll need to run a single command each time you're in a new window starting to work on cross-compiling the code:
 
-    $ source <SDK installation directory>/environment-setup-cortexa7t2hf-neon-vfpv4-ostl-linux-gnueabi
+    $> source <SDK installation directory>/environment-setup-cortexa7t2hf-neon-vfpv4-ostl-linux-gnueabi
 
 And the following check allows you to ensure that the environment is correctly setup:
 
-    $ echo $ARCH
+    $> echo $ARCH
     arm
 
 ### Linux Kernel
@@ -222,10 +233,10 @@ For building the Linux kernel we'll follow the steps from the developer package[
 This initially starts by downloading the OpenSTLinux version of the Linux kernel. The latest package can be found via the link on ST's 
 site, but to grab the (current) most recent we can use the following commands:
 
-    $ wget https://st.com/content/ccc/resource/technical/sw-updater/firmware2/group0/c4/f4/cd/e7/dc/4f/44/c4/STM32cube_Standard_A7_BSP_components_kernel/files/SOURCES-kernel-stm32mp1-openstlinux-5-4-dunfell-mp1-20-11-12.tar.xz/jcr:content/translations/en.SOURCES-kernel-stm32mp1-openstlinux-5-4-dunfell-mp1-20-11-12.tar.xz
-    $ tar -xvf en.SOURCES-kernel-stm32mp1-openstlinux-5-4-dunfell-mp1-20-11-12.tar.xz
-    $ cd stm32mp1-openstlinux-5-4-dunfell-mp1-20-11-12/sources/arm-ostl-linux-gnueabi
-    $ tar -xvf linux-5.4.56.tar.xz
+    $> wget https://st.com/content/ccc/resource/technical/sw-updater/firmware2/group0/c4/f4/cd/e7/dc/4f/44/c4/STM32cube_Standard_A7_BSP_components_kernel/files/SOURCES-kernel-stm32mp1-openstlinux-5-4-dunfell-mp1-20-11-12.tar.xz/jcr:content/translations/en.SOURCES-kernel-stm32mp1-openstlinux-5-4-dunfell-mp1-20-11-12.tar.xz
+    $> tar -xvf en.SOURCES-kernel-stm32mp1-openstlinux-5-4-dunfell-mp1-20-11-12.tar.xz
+    $> cd stm32mp1-openstlinux-5-4-dunfell-mp1-20-11-12/sources/arm-ostl-linux-gnueabi
+    $> tar -xvf linux-5.4.56.tar.xz
 
 This set of commands will download the Linux source code for the 5.4 kernel along with a series of patch files and a README file on how to use everything. 
 
@@ -233,8 +244,8 @@ This set of commands will download the Linux source code for the 5.4 kernel alon
 
 The next step is to patch the source code to build:
 
-    $ cd linux-5.4.56
-    $ for p in `ls -1 ../*.patch`; do patch -p1 < $p; done
+    $> cd linux-5.4.56
+    $> for p in `ls -1 ../*.patch`; do patch -p1 < $p; done
     
 These commands will move you into the core Linux source code and patch all ST provided files (listed in the partent directory) to prep the files. We'll be building
 
@@ -244,20 +255,20 @@ Configuration and build of the kernel code can be done in the current source cod
 in the following examples. Configure for ST's code starts with "fragment"s on the config. We need to enter the kernel code directory (assuming we're not already there) 
 and run `make`:
 
-    $ cd <directory to kernel source code>
-    $ make ARCH=arm multi_v7_defconfig fragment*.config
+    $> cd <directory to kernel source code>
+    $> make ARCH=arm multi_v7_defconfig fragment*.config
 
 If there are multiple fragments, apply them manually one by one:
 
-    $ scripts/kconfig/merge_config.sh -m -r .config ../fragment-01-xxxx.config
-    $ scripts/kconfig/merge_config.sh -m -r .config ../fragment-02-xxxx.config
+    $> scripts/kconfig/merge_config.sh -m -r .config ../fragment-01-xxxx.config
+    $> scripts/kconfig/merge_config.sh -m -r .config ../fragment-02-xxxx.config
     ...
-    $ yes '' | make oldconfig
+    $> yes '' | make oldconfig
 
 or, via a `for` loop:
 
-    $ for f in `ls -1 ../fragment*.config`; do scripts/kconfig/merge_config.sh -m -r .config $f; done
-    $ yes '' | make ARCH=arm oldconfig
+    $> for f in `ls -1 ../fragment*.config`; do scripts/kconfig/merge_config.sh -m -r .config $f; done
+    $> yes '' | make ARCH=arm oldconfig
 
 *NOTE* Two types of fragments are provided:
 
@@ -276,29 +287,29 @@ inside the dedicated build directory). However since we're just "going fast" the
 
 Compile and install on the current source code directory:
 
-    $ cd <directory to kernel source code>
+    $> cd <directory to kernel source code>
         
 Build kernel images (uImage and vmlinux) and device tree (dtbs)
 
-    $ make ARCH=arm uImage vmlinux dtbs LOADADDR=0xC2000040
+    $> make ARCH=arm uImage vmlinux dtbs LOADADDR=0xC2000040
 
 Build kernel module
 
-    $ make ARCH=arm modules
+    $> make ARCH=arm modules
     
 Generate output build artifacts
 
-    $ make ARCH=arm INSTALL_MOD_PATH="$PWD/install_artifact" modules_install
-    $ mkdir -p $PWD/install_artifact/boot/
-    $ cp $PWD/arch/arm/boot/uImage $PWD/install_artifact/boot/
-    $ cp $PWD/arch/arm/boot/dts/st*.dtb $PWD/install_artifact/boot/
+    $> make ARCH=arm INSTALL_MOD_PATH="$PWD/install_artifact" modules_install
+    $> mkdir -p $PWD/install_artifact/boot/
+    $> cp $PWD/arch/arm/boot/uImage $PWD/install_artifact/boot/
+    $> cp $PWD/arch/arm/boot/dts/st*.dtb $PWD/install_artifact/boot/
 
 #### Kernel Artifacts
 
 Generated files are :
 
-    #> $PWD/install_artifact/boot/uImage
-    #> $PWD/install_artifact/boot/<stm32-boards>.dtb
+    $> $PWD/install_artifact/boot/uImage
+    $> $PWD/install_artifact/boot/<stm32-boards>.dtb
 
 ## Resources
 
