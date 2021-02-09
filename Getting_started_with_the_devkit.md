@@ -181,6 +181,9 @@ Assuming a Diabian based OS, the following set of commands will install all requ
     $> sudo apt-get install make xsltproc docbook-utils fop dblatex xmlto
     $> sudo apt-get install libncurses5 libncurses5-dev libncursesw5-dev libssl-dev linux-headers-generic u-boot-tools device-tree-compiler bison flex g++ libyaml-dev
 
+NOTE: More for fun than anything required... You can check the number of cores your machine has to be used in the `-j` flag during the build process via the following command:
+
+    $> grep -P '^core id\t' /proc/cpuinfo | sort -u | wc -l
 
 ### Prereqs on Target
 
@@ -291,11 +294,11 @@ Compile and install on the current source code directory:
         
 Build kernel images (uImage and vmlinux) and device tree (dtbs)
 
-    $> make ARCH=arm uImage vmlinux dtbs LOADADDR=0xC2000040
+    $> make -j<num_of_cores> ARCH=arm uImage vmlinux dtbs LOADADDR=0xC2000040
 
 Build kernel module
 
-    $> make ARCH=arm modules
+    $> make -j<num_of_cores> ARCH=arm modules
     
 Generate output build artifacts
 
